@@ -8,13 +8,13 @@ const morgan = require('morgan');
 // Express settings
 const app = express();
 
-app.use(bodyParser.json());
-app.use(morgan('dev'));
-
+const userRoutes = require('./src/routes/users');
 app.set('port', process.env.PORT || 3000);
-app.listen(app.get('port'), () => {
-    console.log('Express app running on port', app.get('port'))
-});
+
+app.use(morgan('dev'));
+app.use(bodyParser.json());
+app.use(bodyParser.urlencoded({ extended: true }));
+app.use('/usuarios', userRoutes);
 
 
 // DB settings
@@ -27,3 +27,7 @@ mongoose.connect(URI, { useNewUrlParser: true })
     }).catch((err) => {
         console.log('Could not connect. ', err);
     });
+
+app.listen(app.get('port'), () => {
+    console.log('Express app running on port', app.get('port'))
+});
