@@ -4,17 +4,17 @@ const bodyParser = require('body-parser');
 const mongoose = require('mongoose');
 const morgan = require('morgan');
 
+const userRoutes = require('./routes/users');
 
 // Express settings
 const app = express();
 
-const userRoutes = require('./src/routes/users');
 app.set('port', process.env.PORT || 3000);
 
 app.use(morgan('dev'));
 app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({ extended: true }));
-app.use('/usuarios', userRoutes);
+app.use('/', userRoutes);
 
 
 // DB settings
