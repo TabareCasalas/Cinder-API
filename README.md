@@ -31,10 +31,10 @@ NOTAS IMPORTANTES
  
 
 
-    Sólo deben construir la API. No es necesario construir ninguna interfaz gráfica de la aplicación.
+Sólo deben construir la API. No es necesario construir ninguna interfaz gráfica de la aplicación.
 
 
-    La descripción de la API debe coincidir con la mostrada en el proyecto de SwaggerHub. Sólo se aceptarán cambios previa discusión de la justificación. 
+La descripción de la API debe coincidir con la mostrada en el proyecto de SwaggerHub. Sólo se aceptarán cambios previa discusión de la justificación. 
 
  
 
