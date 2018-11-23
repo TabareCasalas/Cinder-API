@@ -11,7 +11,9 @@ const userSchema = new Schema({
     },
     userEmail: {
         type: String,
-        required: true
+        required: true,
+        unique: true,
+        match: /^\w+([\.-]?\w+)*@\w+([\.-]?\w+)*(\.\w{2,3})+$/
     },
     userAge: {
         type: Number,
@@ -20,7 +22,8 @@ const userSchema = new Schema({
     },
     userSex: {
         type: String,
-        required: true
+        required: true,
+        enum: ['M', 'F']
     },
     userStatus: String,
     userCountry: {
@@ -33,7 +36,11 @@ const userSchema = new Schema({
     },
     userLikes: Array,
     userDislikes: Array,
-    userSexInterest: Array
+    userSexInterest: {
+        type: String,
+        required: true,
+        enum: ['M', 'F', 'MF']
+    }
 })
 
 
