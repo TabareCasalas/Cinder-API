@@ -20,7 +20,7 @@ app.use(bodyParser.urlencoded({ extended: true }));
 app.use('/users', userRoutes);
 app.use('/favorites', favoritesRoutes);
 app.use('/rejected', rejectedRoutes);
-app.use('/matches', matchRoutes);
+app.use('/match', matchRoutes);
 
 
 // DB settings
