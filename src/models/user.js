@@ -35,12 +35,7 @@ const userSchema = new Schema({
         required: true
     },
     userLikes: Array,
-    userDislikes: Array,
-    userSexInterest: {
-        type: String,
-        required: true,
-        enum: ['M', 'F', 'MF']
-    }
+    userDislikes: Array
 })
 
 
