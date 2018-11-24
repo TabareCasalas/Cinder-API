@@ -2,10 +2,12 @@
 const express = require('express');
 const router = express.Router();
 
-const { index } = require('../controllers/match');
+const { userMatches } = require('../controllers/match');
 
 // Routes
-router.get('/match/:userId', index);
+router.get('/:userId', userMatches);
+
+
 
 // Exported modules
 module.exports = router;

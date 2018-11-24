@@ -7,6 +7,7 @@ const morgan = require('morgan');
 const userRoutes = require('./routes/users');
 const favoritesRoutes = require('./routes/favorites');
 const rejectedRoutes = require('./routes/rejected');
+const matchRoutes = require('./routes/match');
 
 // Express settings
 const app = express();
@@ -19,8 +20,7 @@ app.use(bodyParser.urlencoded({ extended: true }));
 app.use('/users', userRoutes);
 app.use('/favorites', favoritesRoutes);
 app.use('/rejected', rejectedRoutes);
-
-
+app.use('/matches', matchRoutes);
 
 
 // DB settings
