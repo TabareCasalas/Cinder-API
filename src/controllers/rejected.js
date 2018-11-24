@@ -1,6 +1,6 @@
 // Imported modules
-const Preferences = require('../models/preferences');
 const User = require('../models/user');
+const Preferences = require('../models/preferences');
 
 // Exported modules
 module.exports = {
