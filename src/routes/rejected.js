@@ -2,11 +2,12 @@
 const express = require('express');
 const router = express.Router();
 
-const { index, newRejected } = require('../controllers/rejected');
+const { userRejected, newRejected } = require('../controllers/rejected');
 
 // Routes
-router.get('/rejected/:userId', index);
-router.post('/rejected/:userId', newRejected);
+router.get('/:userId', userRejected);
+router.post('/:userId', newRejected);
+
 
 // Exported modules
 module.exports = router;

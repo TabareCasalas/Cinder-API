@@ -5,6 +5,8 @@ const mongoose = require('mongoose');
 const morgan = require('morgan');
 
 const userRoutes = require('./routes/users');
+const favoritesRoutes = require('./routes/favorites');
+const rejectedRoutes = require('./routes/rejected');
 
 // Express settings
 const app = express();
@@ -14,7 +16,11 @@ app.set('port', process.env.PORT || 3000);
 app.use(morgan('dev'));
 app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({ extended: true }));
-app.use('/', userRoutes);
+app.use('/users', userRoutes);
+app.use('/favorites', favoritesRoutes);
+app.use('/rejected', rejectedRoutes);
+
+
 
 
 // DB settings
@@ -31,3 +37,4 @@ mongoose.connect(URI, { useNewUrlParser: true })
 app.listen(app.get('port'), () => {
     console.log('Express app running on port', app.get('port'))
 });
+
