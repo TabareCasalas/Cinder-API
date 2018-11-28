@@ -14,8 +14,10 @@ module.exports = {
 
         await [User.findById(userId).then((user) => {
             currentUser = user;
+            excludedList.push(currentUser._id.toString())
         }).catch(() => {
             res.status(404).send("ERROR 404 The user doesn't exists")
+            
         }),
         await User.find({}).then((list) => {
             allMatchesList = list.filter(eachUser => eachUser.userCountry == currentUser.userCountry)
@@ -23,17 +25,18 @@ module.exports = {
         }),
         await Preferences.findById(userId).then((userPreferences) => {
             if (userPreferences != null) {
-                excludedList = userPreferences.userFavorites.concat(userPreferences.userRejected);
-                console.log(excludedList)
-                excludedList.forEach(excludedUser => {
-                    allMatchesList.forEach((matchUser) => {
-                        if (excludedUser == matchUser._id) {
-                            allMatchesList.splice(matchUser, 1)
-
-                        }
-                    })
-                });
+                var favAndRej = (userPreferences.userFavorites.concat(userPreferences.userRejected)) ;
+                for (i=0; i<=(favAndRej.length-1); i++) {
+                    excludedList.push(favAndRej[i])
+                }
             }
+            excludedList.forEach(excludedUser => {
+                allMatchesList.forEach((matchUser) => {
+                    if (excludedUser == matchUser._id) {
+                        allMatchesList.splice(matchUser, 1)
+                    }
+                })
+            });
             allMatchesList.forEach((match) => {
                 matchesList.push([match._id, 0])
                 match.userLikes.forEach((matchLikedItem) => {
@@ -57,9 +60,11 @@ module.exports = {
                 })
             })
             matchesList.sort((a, b) => a[1] < b[1])
-            matchesList.forEach((item) => {
-                matchesListOutput.push(item[0])
-            })
+            for (i=0; i<20; i++) {
+                if (matchesList[i] != null) {
+                    matchesListOutput.push(matchesList[i][0])
+                }
+            }
             res.status(200).json(matchesListOutput)
         })
         ]
